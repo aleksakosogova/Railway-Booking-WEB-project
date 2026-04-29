@@ -3,21 +3,24 @@ import { trains } from '../data/trains';
 import TrainCard from './TrainCard';
 
 const TrainList = () => {
-  const [search, setSearch] = useState('');
-  const filtered = trains.filter(t => 
-    t.from.toLowerCase().includes(search.toLowerCase()) || 
-    t.to.toLowerCase().includes(search.toLowerCase())
+  const [query, setQuery] = useState('');
+
+  const filteredTrains = trains.filter(t => 
+    t.from.toLowerCase().includes(query.toLowerCase()) || 
+    t.to.toLowerCase().includes(query.toLowerCase()) ||
+    t.number.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
     <div>
       <input 
         type="text" 
-        placeholder="Куди їдемо?" 
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ width: '100%', padding: '10px', marginBottom: '20px' }}
+        placeholder="Пошук за містом або номером..." 
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '8px', border: '1px solid #ccc' }}
       />
-      {filtered.map(t => <TrainCard key={t.id} train={t} />)}
+      {filteredTrains.map(train => <TrainCard key={train.id} train={train} />)}
     </div>
   );
 };
