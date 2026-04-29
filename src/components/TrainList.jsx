@@ -15,10 +15,21 @@ const TrainList = () => {
     <div>
       <input 
         type="text" 
-        placeholder="Пошук за містом або номером..." 
+        placeholder="Куди прямуємо? (місто або номер)" 
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        style={{ width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '8px', border: '1px solid #ccc' }}
+        style={{ 
+          width: '100%', 
+          padding: '15px 20px', 
+          marginBottom: '30px', 
+          borderRadius: '15px', 
+          border: '2px solid #e1bee7',
+          backgroundColor: '#ffffff',
+          color: '#4a148c',
+          fontSize: '1rem',
+          outline: 'none',
+          boxSizing: 'border-box'
+        }}
       />
       {filteredTrains.map(train => <TrainCard key={train.id} train={train} />)}
     </div>
